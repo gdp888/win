@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+/* =========================================================================
+   Дизайн-система «Алюминиевые конструкции»
+   Направление: Western premium (Schüco / Reynaers / Aluk)
+   Палитра: anthracite + warm bronze (anodized aluminum feel)
+   ========================================================================= */
+
+@theme {
+  /* Цвета бренда */
+  --color-anthracite: #0e0e10;          /* основной тёмный */
+  --color-anthracite-soft: #1b1b1f;     /* секции на тёмном */
+  --color-anthracite-muted: #2a2a30;    /* поверхности на тёмном */
+
+  --color-bronze: #b8865b;              /* акцент: тёплая бронза (анодированный алюминий) */
+  --color-bronze-dark: #8b5a28;
+  --color-bronze-light: #d4a574;
+  --color-bronze-pale: #efe2d3;
+
+  /* Нейтральные */
+  --color-paper: #ffffff;
+  --color-cream: #f7f6f3;               /* тёплый off-white фон секций */
+  --color-mist: #eeede9;                /* границы, поверхности */
+  --color-stone: #d6d4cd;               /* границы заметнее */
+  --color-graphite: #5c5a55;            /* вторичный текст */
+  --color-graphite-soft: #8a8780;       /* метаданные */
+
+  /* Семантика */
+  --color-success: #2d7a3e;
+  --color-error: #b91c1c;
+  --color-warning: #b45309;
+
+  /* Типографика */
+  --font-sans: "Inter", "InterVariable", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Inter", "InterVariable", system-ui, -apple-system, sans-serif;
+
+  /* Радиусы */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 20px;
+
+  /* Тени — мягкие, "архитектурные" */
+  --shadow-card: 0 1px 2px rgba(14, 14, 16, 0.04), 0 4px 12px rgba(14, 14, 16, 0.04);
+  --shadow-lift: 0 2px 4px rgba(14, 14, 16, 0.06), 0 12px 32px rgba(14, 14, 16, 0.08);
+
+  /* Контейнеры */
+  --container-page: 1240px;
+  --container-prose: 720px;
+}
+
+/* =========================================================================
+   Базовые стили
+   ========================================================================= */
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-anthracite);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";      /* аккуратные кавычки, цифры */
+    font-synthesis: none;
+  }
+
+  /* Заголовки — tight-er, architectural */
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    font-weight: 600;
+    text-wrap: balance;
+  }
+
+  /* Ссылки по умолчанию */
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Выделение */
+  ::selection {
+    background: var(--color-bronze);
+    color: var(--color-paper);
+  }
+
+  /* Скроллбар — тонкий, в брендовом тоне */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--color-cream); }
+  ::-webkit-scrollbar-thumb { background: var(--color-stone); border-radius: 999px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-graphite-soft); }
+
+  /* Focus ring для доступности */
+  :focus-visible {
+    outline: 2px solid var(--color-bronze);
+    outline-offset: 2px;
+    border-radius: var(--radius-xs);
+  }
+}
+
+/* =========================================================================
+   Утилиты проекта
+   ========================================================================= */
+@layer components {
+  .container-page {
+    max-width: var(--container-page);
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  /* Шум-текстура для hero-секций — лёгкая, "металлическая" */
+  .grain {
+    position: relative;
+    isolation: isolate;
+  }
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Тонкая разделительная линия в брендовом стиле */
+  .hairline {
+    border-top: 1px solid var(--color-mist);
+  }
+
+  /* Заголовок секции — eyebrow + h2 + описание */
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-bronze);
+  }
+}

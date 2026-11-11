@@ -1,0 +1,37 @@
+---
+interface Props {
+  as?: 'section' | 'div';
+  /** Вариант фона */
+  variant?: 'paper' | 'cream' | 'anthracite';
+  /** Отступы вертикали */
+  padding?: 'sm' | 'md' | 'lg';
+  class?: string;
+  id?: string;
+}
+
+const {
+  as: Tag = 'section',
+  variant = 'paper',
+  padding = 'lg',
+  class: className = '',
+  id,
+} = Astro.props;
+
+const variantClass = {
+  paper: 'bg-paper text-anthracite',
+  cream: 'bg-cream text-anthracite',
+  anthracite: 'bg-anthracite text-paper',
+}[variant];
+
+const paddingClass = {
+  sm: 'py-10 md:py-14',
+  md: 'py-14 md:py-20',
+  lg: 'py-20 md:py-28',
+}[padding];
+---
+
+<Tag id={id} class:list={[variantClass, paddingClass, className]}>
+  <div class="container-page">
+    <slot />
+  </div>
+</Tag>

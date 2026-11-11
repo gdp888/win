@@ -1,0 +1,79 @@
+---
+import { site, nav } from '../lib/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-24 border-t border-mist bg-cream">
+  <div class="container-page py-14">
+    <div class="grid grid-cols-1 gap-10 md:grid-cols-12">
+      <!-- Бренд -->
+      <div class="md:col-span-5">
+        <div class="flex items-center gap-2 font-semibold">
+          <span class="grid h-8 w-8 place-items-center rounded-md bg-anthracite text-xs font-bold text-paper">
+            АК
+          </span>
+          <span class="text-sm">{site.brand}</span>
+        </div>
+        <p class="mt-4 max-w-sm text-sm leading-relaxed text-graphite">
+          {site.description}
+        </p>
+        <p class="mt-4 text-xs text-graphite-soft">
+          Профильные системы: {site.profileSystems.join(' · ')}
+        </p>
+      </div>
+
+      <!-- Навигация -->
+      <div class="md:col-span-3">
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-graphite-soft">Навигация</h3>
+        <ul class="mt-4 space-y-2.5">
+          {nav.map((item) => (
+            <li>
+              <a href={item.href} class="text-sm text-graphite transition-colors hover:text-bronze">
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Контакты -->
+      <div class="md:col-span-4">
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-graphite-soft">Контакты</h3>
+        <ul class="mt-4 space-y-2.5 text-sm">
+          <li>
+            <a href={`tel:${site.phoneHref}`} class="font-medium text-anthracite hover:text-bronze">
+              {site.phone}
+            </a>
+          </li>
+          <li>
+            <a href={`mailto:${site.email}`} class="text-graphite hover:text-bronze">
+              {site.email}
+            </a>
+          </li>
+          <li class="text-graphite">
+            {site.address.locality}, {site.address.street}
+          </li>
+          <li class="text-graphite-soft text-xs">{site.workHours}</li>
+        </ul>
+
+        <div class="mt-5 flex gap-3">
+          <a href={site.social.telegram} class="rounded-md border border-mist px-3 py-1.5 text-xs text-graphite transition-colors hover:border-bronze hover:text-bronze" aria-label="Telegram">
+            Telegram
+          </a>
+          <a href={site.social.whatsapp} class="rounded-md border border-mist px-3 py-1.5 text-xs text-graphite transition-colors hover:border-bronze hover:text-bronze" aria-label="WhatsApp">
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 flex flex-col gap-3 border-t border-mist pt-6 text-xs text-graphite-soft sm:flex-row sm:items-center sm:justify-between">
+      <p>© {year} {site.brand}. Все права защищены.</p>
+      <div class="flex gap-4">
+        <a href="/privacy/" class="hover:text-bronze">Политика конфиденциальности</a>
+        <span aria-hidden="true">·</span>
+        <span>Москва и Московская область</span>
+      </div>
+    </div>
+  </div>
+</footer>

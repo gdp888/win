@@ -1,0 +1,13 @@
+---
+import { site } from '../lib/site';
+---
+
+<div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs uppercase tracking-widest text-graphite-soft">
+  <span class="text-graphite">Профильные системы</span>
+  {site.profileSystems.map((name) => (
+    <span class="inline-flex items-center gap-1.5 font-medium text-anthracite">
+      <span class="h-1 w-1 rounded-full bg-bronze" aria-hidden="true"></span>
+      {name}
+    </span>
+  ))}
+</div>

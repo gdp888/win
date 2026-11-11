@@ -1,0 +1,30 @@
+---
+import Section from './Section.astro';
+
+const steps = [
+  { n: '01', title: 'Заявка и замер', text: 'Принимаем заявку, выезжаем на объект для замеров и консультации. Бесплатно.' },
+  { n: '02', title: 'Проектирование', text: 'Готовим техническое решение, КМ/КМД, подбор профильной системы и фурнитуры.' },
+  { n: '03', title: 'Производство', text: 'Изготовление конструкций на собственном производстве. Контроль качества.' },
+  { n: '04', title: 'Монтаж', text: 'Доставка и профессиональный монтаж. Сдача объекта с актом приёмки.' },
+  { n: '05', title: 'Гарантия и сервис', text: '5 лет гарантии на конструкции и монтаж. Сервисное обслуживание.' },
+];
+---
+
+<Section variant="paper" padding="lg" id="process">
+  <div class="max-w-2xl">
+    <p class="eyebrow">Как мы работаем</p>
+    <h2 class="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+      Полный цикл — от заявки до сдачи
+    </h2>
+  </div>
+
+  <ol class="mt-12 grid grid-cols-1 gap-px bg-mist md:grid-cols-5">
+    {steps.map((step) => (
+      <li class="bg-paper p-6">
+        <span class="text-xs font-semibold tracking-widest text-bronze">{step.n}</span>
+        <h3 class="mt-3 text-base font-semibold tracking-tight">{step.title}</h3>
+        <p class="mt-2 text-sm leading-relaxed text-graphite">{step.text}</p>
+      </li>
+    ))}
+  </ol>
+</Section>

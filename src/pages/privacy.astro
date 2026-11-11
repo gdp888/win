@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import { site } from '../lib/site';
+---
+
+<Base
+  path="/privacy/"
+  title="Политика конфиденциальности"
+  description="Политика обработки персональных данных в соответствии с 152-ФЗ."
+  noindex={false}
+>
+  <Section variant="paper" padding="lg">
+    <p class="eyebrow">Документ</p>
+    <h1 class="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+      Политика обработки персональных данных
+    </h1>
+    <p class="mt-4 text-sm text-graphite-soft">
+      Редакция от {new Date().toLocaleDateString('ru-RU')} · Документ-заглушка для каркаса MVP.
+      Перед продакшеном заменить на юридически корректный текст от специалиста.
+    </p>
+
+    <div class="mt-10 max-w-[720px] space-y-8 text-sm leading-relaxed text-graphite">
+      <section>
+        <h2 class="text-base font-semibold text-anthracite">1. Общие положения</h2>
+        <p class="mt-3">
+          Настоящая Политика обработки персональных данных составлена в соответствии
+          с требованиями Федерального закона от 27.07.2006 № 152-ФЗ «О персональных данных»
+          и определяет порядок обработки и защиты {site.brand} (далее — Оператор) информации
+          физического лица, которую можно использовать для определённой личности.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-base font-semibold text-anthracite">2. Какие данные обрабатываются</h2>
+        <p class="mt-3">Оператор обрабатывает следующие персональные данные:</p>
+        <ul class="mt-3 space-y-1.5">
+          <li>— ФИО (имя), указанное при заполнении формы заявки;</li>
+          <li>— Контактный телефон;</li>
+          <li>— Адрес электронной почты (если указан);</li>
+          <li>— Адрес объекта, комментарий к заявке;</li>
+          <li>— Технические данные: IP, cookies, пользовательский агент — для обеспечения работоспособности сайта.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-base font-semibold text-anthracite">3. Цели обработки</h2>
+        <ul class="mt-3 space-y-1.5">
+          <li>— Обработка заявок и обратная связь;</li>
+          <li>— Консультация, выезд замерщика, расчёт стоимости;</li>
+          <li>— Заключение и исполнение договоров на оказание услуг;</li>
+          <li>— Информирование о статусе заявки и ходе работ.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-base font-semibold text-anthracite">4. Правовые основания</h2>
+        <p class="mt-3">
+          Обработка персональных данных осуществляется на основе согласия, полученного
+          от субъекта персональных данных при заполнении формы (п. 1 ч. 1 ст. 6,
+          ч. 4 ст. 9 ФЗ-152), а также в случаях, необходимых для исполнения договора.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-base font-semibold text-anthracite">5. Сроки хранения</h2>
+        <p class="mt-3">
+          Персональные данные хранятся до достижения целей обработки, но не более срока,
+          установленного законодательством РФ. По достижении целей — уничтожаются
+          или обезличиваются.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-base font-semibold text-anthracite">6. Контакты Оператора</h2>
+        <p class="mt-3">
+          По всем вопросам, связанным с обработкой персональных данных, обращайтесь:<br />
+          {site.brand}<br />
+          Телефон: <a href={`tel:${site.phoneHref}`} class="text-bronze">{site.phone}</a><br />
+          E-mail: <a href={`mailto:${site.email}`} class="text-bronze">{site.email}</a><br />
+          Адрес: {site.address.locality}, {site.address.street}
+        </p>
+      </section>
+    </div>
+  </Section>
+</Base>

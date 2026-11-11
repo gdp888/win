@@ -1,0 +1,47 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'ghost' | 'on-dark';
+  size?: 'sm' | 'md' | 'lg';
+  type?: 'button' | 'submit';
+  class?: string;
+  target?: string;
+  rel?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  type = 'button',
+  class: className = '',
+  target,
+  rel,
+} = Astro.props;
+
+const base = 'inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bronze disabled:opacity-50 disabled:pointer-events-none whitespace-nowrap';
+
+const variants = {
+  primary: 'bg-anthracite text-paper hover:bg-bronze',
+  secondary: 'border border-anthracite/15 text-anthracite hover:border-bronze hover:text-bronze',
+  ghost: 'text-anthracite hover:text-bronze',
+  'on-dark': 'bg-paper text-anthracite hover:bg-bronze hover:text-paper',
+};
+
+const sizes = {
+  sm: 'px-3 py-1.5 text-xs',
+  md: 'px-5 py-2.5 text-sm',
+  lg: 'px-6 py-3 text-base',
+};
+
+const classes = [base, variants[variant], sizes[size], className];
+
+const Tag = href ? 'a' : 'button';
+const extraProps = href
+  ? { href, target, rel }
+  : { type };
+---
+
+<Tag class={classes.join(' ')} {...extraProps}>
+  <slot />
+</Tag>

@@ -1,0 +1,40 @@
+---
+import Section from './Section.astro';
+import Button from './Button.astro';
+---
+
+<Section variant="anthracite" padding="lg">
+  <div class="grid grid-cols-1 gap-10 md:grid-cols-2 md:items-center">
+    <div>
+      <p class="eyebrow text-bronze-light">Заявка</p>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+        Обсудим ваш объект?
+      </h2>
+      <p class="mt-4 text-paper/70">
+        Бесплатный выезд замерщика по Москве и МО. Расчёт стоимости — в течение 1 рабочего дня.
+        Поможем подобрать профильную систему под задачу и бюджет.
+      </p>
+      <div class="mt-7 flex flex-wrap gap-3">
+        <Button href="/contacts/#form" variant="on-dark" size="lg">Оставить заявку</Button>
+        <Button href="/contacts/" variant="ghost" size="lg" class="text-paper/80 hover:text-bronze-light">
+          Контакты →
+        </Button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-3 gap-px bg-anthracite-muted">
+      <div class="bg-anthracite-soft p-5">
+        <div class="text-3xl font-semibold text-bronze-light">0 ₽</div>
+        <div class="mt-1 text-xs uppercase tracking-widest text-paper/60">Замер</div>
+      </div>
+      <div class="bg-anthracite-soft p-5">
+        <div class="text-3xl font-semibold text-bronze-light">1 день</div>
+        <div class="mt-1 text-xs uppercase tracking-widest text-paper/60">Расчёт</div>
+      </div>
+      <div class="bg-anthracite-soft p-5">
+        <div class="text-3xl font-semibold text-bronze-light">5 лет</div>
+        <div class="mt-1 text-xs uppercase tracking-widest text-paper/60">Гарантия</div>
+      </div>
+    </div>
+  </div>
+</Section>

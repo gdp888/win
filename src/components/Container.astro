@@ -1,0 +1,19 @@
+---
+interface Props {
+  as?: 'div' | 'section' | 'article' | 'main' | 'header' | 'footer';
+  size?: 'page' | 'prose' | 'full';
+  class?: string;
+}
+
+const { as: Tag = 'div', size = 'page', class: className = '' } = Astro.props;
+
+const sizeClass = {
+  page: 'container-page',
+  prose: 'max-w-[720px] mx-auto px-5',
+  full: 'w-full px-5',
+}[size];
+---
+
+<Tag class:list={[sizeClass, className]}>
+  <slot />
+</Tag>

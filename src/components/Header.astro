@@ -1,0 +1,108 @@
+---
+import { nav, site } from '../lib/site';
+
+const path = Astro.url.pathname;
+const isActive = (href: string) => {
+  if (href === '/') return path === '/';
+  return path.startsWith(href);
+};
+---
+
+<header class="sticky top-0 z-50 border-b border-mist bg-paper/80 backdrop-blur-md">
+  <div class="container-page flex h-16 items-center justify-between gap-6">
+    <!-- Лого -->
+    <a href="/" class="flex items-center gap-2 font-semibold tracking-tight" aria-label={site.brand}>
+      <span class="grid h-8 w-8 place-items-center rounded-md bg-anthracite text-xs font-bold text-paper">
+        АК
+      </span>
+      <span class="hidden text-sm font-medium leading-none text-anthracite sm:inline">
+        {site.brand}
+      </span>
+    </a>
+
+    <!-- Десктоп-навигация -->
+    <nav class="hidden items-center gap-7 md:flex" aria-label="Основная навигация">
+      {nav.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'text-sm transition-colors hover:text-bronze',
+            isActive(item.href) ? 'text-bronze' : 'text-graphite',
+          ]}
+          aria-current={isActive(item.href) ? 'page' : undefined}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- CTA -->
+    <div class="flex items-center gap-3">
+      <a
+        href={`tel:${site.phoneHref}`}
+        class="hidden text-sm font-medium text-anthracite transition-colors hover:text-bronze lg:inline"
+      >
+        {site.phone}
+      </a>
+      <a
+        href="/contacts/#form"
+        class="inline-flex items-center gap-2 rounded-md bg-anthracite px-4 py-2 text-sm font-medium text-paper transition-colors hover:bg-bronze"
+      >
+        Оставить заявку
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+
+      <!-- Мобильное меню — пока заглушка-кнопка -->
+      <button
+        type="button"
+        class="grid h-9 w-9 place-items-center rounded-md border border-mist text-anthracite md:hidden"
+        aria-label="Меню"
+        aria-expanded="false"
+        data-mobile-toggle
+      >
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Мобильное меню — раскрывается через <details> для no-JS -->
+  <details class="hidden border-t border-mist md:hidden" data-mobile-menu>
+    <summary class="sr-only">Открыть меню</summary>
+    <nav class="container-page flex flex-col gap-1 py-4" aria-label="Мобильная навигация">
+      {nav.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'rounded-md px-3 py-2 text-sm',
+            isActive(item.href) ? 'bg-cream text-bronze' : 'text-graphite hover:bg-cream',
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+      <a href={`tel:${site.phoneHref}`} class="px-3 py-2 text-sm font-medium text-anthracite">
+        {site.phone}
+      </a>
+    </nav>
+  </details>
+</header>
+
+<script>
+  // Минимальный тогглер мобильного меню
+  const btn = document.querySelector('[data-mobile-toggle]');
+  const menu = document.querySelector('[data-mobile-menu]');
+  btn?.addEventListener('click', () => {
+    const open = menu?.hasAttribute('open');
+    if (open) {
+      menu?.removeAttribute('open');
+      btn.setAttribute('aria-expanded', 'false');
+    } else {
+      menu?.setAttribute('open', '');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+</script>

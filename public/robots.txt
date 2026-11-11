@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Russian search engines
+User-agent: Yandex
+Allow: /
+
+User-agent: Mail.RU
+Allow: /
+
+Sitemap: https://okna888.com/sitemap-index.xml
